@@ -1,7 +1,7 @@
 Ctrl+S
 
 --Total Downtime (with Join)
-  SELECT
+  SELECT Distinct
   lp.batch,
   lp.product,
   lp.operator,
@@ -21,11 +21,11 @@ Group by lp.product
 Order by avg_downtime DESC;
 
 Top10 batches
-Select
+Select Distinct
 lp.batch,
 lp.product,
 lp.operator,
-td.total_downtime
+CAST(td.total_downtime AS integer) AS total_downtime
 From line_productivity As lp
 Join vw_total_downtime As td
 On lp.batch=td.batch
